@@ -1,0 +1,28 @@
+{
+    "name": "melipayamak/php",
+    "type": "library",
+	"version": "0.1.0",
+    "description": "A PHP wrapper for melipayamak's web services",
+    "keywords": ["melipayamak", "sms", "api"],
+    "homepage": "http://github.com/Melipayamak/melipayamak-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Melipayamak Team",
+            "email": "melipayamak.ir@gmail.com"
+        },
+        {
+            "name": "Ara Code It",
+            "email": "ahnara92@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Melipayamak\\": "src/"
+        }
+    },
+    "minimum-stability" : "stable"
+}
