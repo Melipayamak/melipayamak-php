@@ -82,6 +82,23 @@ class SmsRest extends BaseSms
 		
 	}
 	
+	public function sendByBaseNumber($text,$to,$bodyId)
+	{
+		
+		$url = $this->getPath(self::PATH,'BaseServiceNumber');
+		
+		$data = [
+		'UserName' => $this->username,
+		'PassWord' => $this->password,
+		'text' => $text,
+		'to' => $to,
+		'bodyId' => $bodyId
+		];
+		
+		return $this->execute($url,$data);
+		
+	}
+	
 	public function isDelivered($id)
 	{
 		
