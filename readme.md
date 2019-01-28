@@ -142,6 +142,14 @@ $contacts = $api->contacts()
 $smsRest->send($to,$from,$text,$isFlash);
 $smsSoap->send($to,$from,$text,$isFlash);
 ```
+
+#### ارسال از خط خدماتی اشتراکی
+
+```php
+$smsRest->sendByBaseNumber($text,$to,$bodyId);
+$smsSoap->sendByBaseNumber($text,$to,$bodyId);
+```
+
 * در وب سرویس soap به جای ارسال یک شماره آرایه ای از شماره ها نیز قابل قبول است
 
 #### دریافت وضعیت ارسال
