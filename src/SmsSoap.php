@@ -231,6 +231,43 @@ class SmsSoap extends BaseSms
 	}
 	
 	
+	public function sendByBaseNumber($text,$to,$bodyId)
+	{
+		
+		$client = new \SoapClient($this->sendUrl);
+		
+		
+		$data = 
+		[   
+		'username' => $this->username,
+		'password' => $this->password,
+		'text'=> $text,
+		'to' => $to,
+		'bodyId' => $bodyId
+		];
+		
+		
+		$result;
+		
+		
+		if(is_array($text)){
+			
+			
+			$result = $client->SendByBaseNumber($data)->SendByBaseNumberResult;
+			
+		}
+		
+		else{
+			
+			$result = $client->SendByBaseNumber2($data)->SendByBaseNumber2Result;
+			
+		}
+		
+		return $result;
+		
+	}
+	
+	
 	public function getMessages($location,$index,$count,$from='')
 	{
 		
