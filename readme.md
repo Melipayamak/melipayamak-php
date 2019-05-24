@@ -235,6 +235,7 @@ $smsSoap->getScheduleStatus($schId);
 $smsSoap->removeSchedule($schId);
 ```
 
+### وب سرویس پیامک صوتی
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```php
@@ -250,6 +251,22 @@ $smsSoap->sendWithSpeechSchduleDate($to,$from,$text,$speech,$scheduleDate);
 ```php
 $smsSoap->getSendWithSpeech($recId);
 ```
+
+#### تماس انبوه زماندار
+```php
+$smsSoap->SendBulkSpeechText($title, $body, $receivers, $DateToSend, $repeatCount);
+```
+
+#### تماس انبوه زماندار با انتخاب فایل
+```php
+$smsSoap->SendBulkVoiceSMS($title, $voiceFileId, $receivers, $DateToSend, $repeatCount);
+```
+
+#### آپلود فایل صوتی
+```php
+$smsSoap->UploadVoiceFile($title, $base64StringFile);
+```
+
 ### وب سرویس ارسال انبوه/منطقه ای
 
 #### دریافت شناسه شاخه های بانک شماره
