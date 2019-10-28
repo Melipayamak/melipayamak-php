@@ -2,7 +2,6 @@
 
 namespace Melipayamak;
 
-
 class MelipayamakApi
 {
 	
@@ -12,15 +11,13 @@ class MelipayamakApi
 	
 	private $namespace = '\Melipayamak\\';
 	
-	public function __construct($username,$password)
+	public function __construct($username, $password)
 	{
 		
 		
 		if (is_null($username)||is_null($password)) {
 			
-			die('username/password is empty');
-			
-			exit;
+			exit('username/password is empty');
 			
 		}
 		
@@ -30,25 +27,25 @@ class MelipayamakApi
 		
 	}
 	
-	public function __call($name,$arguments)
+	public function __call($name, $arguments)
 	{
 		
-		$type=null;
+		$type = null;
 		
-		$class= $this->namespace.ucfirst($name);
+		$class = $this->namespace . ucfirst($name);
 		
-		if($name=='sms'){
+		if ($name == 'sms'){
 			
-			$type = isset($arguments[0])? $arguments[0] : 'rest';
+			$type = isset($arguments[0]) ? $arguments[0] : 'rest';
 			
-			$class.=ucfirst($type);
+			$class .= ucfirst($type);
 			
 		}
 		
-		if(class_exists($class))
+		if (class_exists($class))
 		{
 			
-			return new $class($this->username,$this->password);
+			return new $class($this->username, $this->password);
 			
 		}
 		
