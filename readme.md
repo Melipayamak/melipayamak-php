@@ -146,6 +146,7 @@ $smsSoap->send($to,$from,$text,$isFlash);
 #### ارسال از خط خدماتی اشتراکی
 
 ```php
+$smsRest->sendByBaseNumber($text,$to,$bodyId);
 $smsSoap->sendByBaseNumber($text,$to,$bodyId);
 ```
 
