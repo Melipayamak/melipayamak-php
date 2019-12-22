@@ -33,25 +33,34 @@ class MelipayamakApi
 	public function __call($name,$arguments)
 	{
 		
-		$type=null;
-		
-		$class= $this->namespace.ucfirst($name);
-		
-		if($name=='sms'){
-			
-			$type = isset($arguments[0])? $arguments[0] : 'rest';
-			
-			$class.=ucfirst($type);
-			
+		$method = 'rest';
+		$class = $this->namespace.ucfirst($name);
+		$type = '';
+
+		if($name == 'sms') {
+
+			if(isset($arguments[0])) {
+				if($arguments[0] == 'soap')
+					$method = 'soap';
+				else if($arguments[0] == 'async')
+					$type = 'async';
+			}
+
+			if(isset($arguments[1])){
+				if($arguments[1] == 'async')
+					$type = 'async';
+			}
+
+			$class .= ucfirst($method);
+			$class .= ucfirst($type);
 		}
-		
+		else if(isset($arguments[0])) {
+			$class .= ucfirst('async');
+		}
+
 		if(class_exists($class))
-		{
-			
 			return new $class($this->username,$this->password);
-			
-		}
-		
+					
 	}
 	
 }
