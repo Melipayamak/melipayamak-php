@@ -111,6 +111,26 @@ $contacts = $api->contacts()
 
 ```
 
+<div dir='rtl'>
+
+#####حالت آسنکرون
+شما میتوانید از وب سرویس ملی پیامک در حالت آسنکرون هم استفاده کنید. آماده سازی آسنکرون در PHP به صورت زیر است. توجه کنید که دستورات آسنکرون به شرط فراخوانی دستور `$sms->execute();` بطور موازی انجام می شوند.
+	
+</div>
+
+```php
+// وب سرویس پیامک
+$smsRestAsync = $api->sms('async');
+$smsSoapAsync = $api->sms('soap', 'async');
+// وب سرویس تیکت پشتیبانی
+$ticket = $api->ticket('async');
+// وب سرویس برای مدیریت کامل  ارسال انبوه پیامک
+$branch = $api->branch('async');
+//وب سرویس کاربران
+$users = $api->users('async');
+//وب سرویس دفترچه تلفن
+$contacts = $api->contacts('async');
+```
 
 <div dir='rtl'>
 
