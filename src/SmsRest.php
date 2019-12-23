@@ -59,6 +59,8 @@ class SmsRest extends BaseSms
 			
 		}
 		
+		curl_close($handle);
+
 		return $response;
 		
 		
