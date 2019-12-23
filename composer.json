@@ -1,7 +1,7 @@
 {
     "name": "melipayamak/php",
     "type": "library",
-	"version": "0.1.0",
+	"version": "0.2.0",
     "description": "A PHP wrapper for melipayamak's web services",
     "keywords": ["melipayamak", "sms", "api"],
     "homepage": "http://github.com/Melipayamak/melipayamak-php",
