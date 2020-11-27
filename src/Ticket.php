@@ -20,9 +20,7 @@ class Ticket
 		
 		if (is_null($username)||is_null($password)) {
 			
-			die('username/password is empty');
-			
-			exit;
+			throw new RuntimeException('username/password is empty');
 			
 		}
 		

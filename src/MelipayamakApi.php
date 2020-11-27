@@ -18,9 +18,7 @@ class MelipayamakApi
 		
 		if (is_null($username)||is_null($password)) {
 			
-			die('username/password is empty');
-			
-			exit;
+			throw new RuntimeException('username/password is empty');
 			
 		}
 		
@@ -60,7 +58,8 @@ class MelipayamakApi
 
 		if(class_exists($class))
 			return new $class($this->username,$this->password);
-					
+
+		throw new RuntimeException("Class {$class} not found");
 	}
 	
 }
