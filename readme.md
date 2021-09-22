@@ -179,7 +179,7 @@ $smsSoap->sharedServiceBodyAdd($title,$body,$blackListId);
 $smsSoap->getSharedServiceBody();
 ```
 
-#### ارسال از خط خدماتی اشتراکی
+#### ارسال از طریق الگو (خط خدماتی اشتراکی)
 
 ```php
 $smsRest->sendByBaseNumber($text,$to,$bodyId);
