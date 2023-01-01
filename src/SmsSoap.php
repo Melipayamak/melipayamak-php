@@ -92,35 +92,32 @@ class SmsSoap extends BaseSms
 		[   
 		'username' => $this->username,
 		'password' => $this->password,
+		'recIds'   => $id	
 		];
 		
 		
-		$result;
+// 		$result;
 		
 		
-		if(is_array($id)){
+// 		if(is_array($id)){
 			
 			
-			$data['recId'] = $id;
+// 			$data['recId'] = $id;
 			
 			
-			$result = $client->GetDeliveries3($data)->GetDeliveries3Result;
+// 			$result = $client->GetDeliveries3($data)->GetDeliveries3Result;
 			
 			
-		}
+// 		}
 		
-		else{
+// 		else{
+// 			$data['recId'] = $id;
+					
+// 			$result = $client->GetDelivery2($data)->GetDelivery2Result;
 			
 			
-			$data['recId'] = $id;
-			
-			
-			$result = $client->GetDelivery2($data)->GetDelivery2Result;
-			
-			
-		}
-		
-		
+// 		}
+		$result = $client->GetDeliveries($data)->GetDeliveriesResult;
 		
 		return $result;
 		

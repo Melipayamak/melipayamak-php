@@ -163,7 +163,23 @@ $smsRest->send($to,$from,$text,$isFlash);
 $smsSoap->send($to,$from,$text,$isFlash);
 ```
 
-#### ارسال از خط خدماتی اشتراکی
+#### درج لیست ویژه سیاه
+
+```php
+$smsSoap->addblacklist($title);
+```
+
+#### درج پترن یا الگو
+```php
+$smsSoap->sharedServiceBodyAdd($title,$body,$blackListId);
+```
+
+#### مشاهده پترن‌های درج شده
+```php
+$smsSoap->getSharedServiceBody();
+```
+
+#### ارسال از طریق الگو (خط خدماتی اشتراکی)
 
 ```php
 $smsRest->sendByBaseNumber($text,$to,$bodyId);
