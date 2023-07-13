@@ -72,12 +72,12 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'SendSMS');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password,
-		'To' => $to,
-		'From' => $from,
-		'Text' => $text,
-		'IsFlash' => $isFlash
+		'username' => $this->username,
+		'password' => $this->password,
+		'to' => $to,
+		'from' => $from,
+		'text' => $text,
+		'isflash' => $isFlash
 		];
 		
 		return $this->execute($url,$data);
@@ -90,8 +90,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'BaseServiceNumber');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password,
+		'username' => $this->username,
+		'password' => $this->password,
 		'text' => $text,
 		'to' => $to,
 		'bodyId' => $bodyId
@@ -107,8 +107,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'GetDeliveries2');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password,
+		'username' => $this->username,
+		'password' => $this->password,
 		'recId' => $id
 		];
 		
@@ -123,8 +123,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'GetMessages');
 		
 		$options = [
-		'UserName'=> $this->username,
-		'PassWord'=> $this->password,
+		'username'=> $this->username,
+		'password'=> $this->password,
 		'location'=> $location,
 		'index'=> $index,
 		'count' => $count,
@@ -143,8 +143,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'GetCredit');
 		
 		$data=[
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'username' => $this->username,
+		'password' => $this->password
 		];
 		
 		return $this->execute($url,$data);
@@ -157,8 +157,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'GetBasePrice');
 		
 		$data=[
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'username' => $this->username,
+		'password' => $this->password
 		];
 		
 		return $this->execute($url,$data);
@@ -171,8 +171,8 @@ class SmsRest extends BaseSms
 		$url = $this->getPath(self::PATH,'GetUserNumbers');
 		
 		$data=[
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'username' => $this->username,
+		'password' => $this->password
 		];
 		
 		return $this->execute($url,$data);

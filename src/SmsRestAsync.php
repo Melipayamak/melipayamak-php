@@ -78,12 +78,12 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'SendSMS');
 		
 		$data = [
-		'Username' => $this->username,
-		'Password' => $this->password,
-		'To' => $to,
-		'From' => $from,
-		'Text' => $text,
-		'isFlash' => $isFlash
+		'username' => $this->username,
+		'password' => $this->password,
+		'to' => $to,
+		'from' => $from,
+		'text' => $text,
+		'isflash' => $isFlash
 		];
 		
 		array_push($this->queue, $url);
@@ -96,8 +96,8 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'GetDeliveries2');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password,
+		'username' => $this->username,
+		'password' => $this->password,
 		'recId' => $id
 		];
 		
@@ -112,12 +112,12 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'GetMessages');
 		
 		$data = [
-		'UserName'=> $this->username,
-		'PassWord'=> $this->password,
-		'Location'=> $location,
-		'Index'=> $index,
-		'Count' => $count,
-		'From' => $from
+		'username'=> $this->username,
+		'password'=> $this->password,
+		'location'=> $location,
+		'index'=> $index,
+		'count' => $count,
+		'from' => $from
 		
 		];
 		
@@ -131,8 +131,8 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'GetCredit');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'useruame' => $this->username,
+		'password' => $this->password
 		];
 		
 		array_push($this->queue, $url);
@@ -145,8 +145,8 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'GetBasePrice');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'username' => $this->username,
+		'password' => $this->password
 		];
 		
 		array_push($this->queue, $url);
@@ -159,8 +159,8 @@ class SmsRestAsync extends BaseSms
 		$url = $this->getPath(self::PATH,'GetUserNumbers');
 		
 		$data = [
-		'UserName' => $this->username,
-		'PassWord' => $this->password
+		'username' => $this->username,
+		'password' => $this->password
 		];
 		
 		array_push($this->queue, $url);
