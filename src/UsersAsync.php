@@ -349,5 +349,25 @@ class UsersAsync
 	}
 	
 	
-	
+	public function getEnExpireDate()
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password
+		];
+
+		array_push($this->queue, 'GetEnExpireDate');
+		array_push($this->queue, $data);
+	}
+
+	public function getUserCredit2()
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password
+		];
+
+		array_push($this->queue, 'GetUserCredit2');
+		array_push($this->queue, $data);
+	}
 }
