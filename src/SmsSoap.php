@@ -16,6 +16,7 @@ class SmsSoap extends BaseSms
 	protected $voiceUrl;
 	protected $scheduleUrl;
 	protected $smartUrl;
+	protected $blackListUrl;
 
 
 	public function __construct($username, $password)
@@ -34,6 +35,8 @@ class SmsSoap extends BaseSms
 		$this->scheduleUrl = $this->getPath(self::PATH, 'Schedule');
 
 		$this->smartUrl = $this->getPath(self::PATH, 'Smartsms');
+
+		$this->blackListUrl = $this->getPath(self::PATH, 'blacklist');
 	}
 
 
@@ -654,7 +657,7 @@ class SmsSoap extends BaseSms
 		])->SendMultipleSmartSMSResult;
 	}
 
-	public function SendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	public function sendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
 	{
 		$client = new \SoapClient($this->smartUrl);
 
@@ -667,5 +670,44 @@ class SmsSoap extends BaseSms
 			'fromSupportOne' => $fromSupportOne,
 			'fromSupportTwo' => $fromSupportTwo
 		])->SendSmartSMSResult;
+	}
+
+
+	public function addBlackList($number, $type)
+	{
+		$client = new \SoapClient($this->blackListUrl);
+
+		return $client->AddBlackList([
+			'username' => $this->username,
+			'password' => $this->password,
+			'number' => $number,
+			'type' => $type
+		])->AddBlackListResult;
+	}
+
+
+	public function addMobile($listId, $type, $mobileNumbers, $addBySms)
+	{
+		$client = new \SoapClient($this->blackListUrl);
+
+		return $client->AddMobile([
+			'username' => $this->username,
+			'password' => $this->password,
+			'type' => $type,
+			'listId' => $listId,
+			'mobileNumbers' => $mobileNumbers,
+			'addBySms' => $addBySms
+		])->AddMobileResult;
+	}
+
+
+	public function getBlackLists()
+	{
+		$client = new \SoapClient($this->blackListUrl);
+
+		return $client->GetBlackLists([
+			'username' => $this->username,
+			'password' => $this->password
+		])->GetBlackListsResult;
 	}
 }

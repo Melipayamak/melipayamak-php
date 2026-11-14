@@ -18,6 +18,7 @@ class SmsSoapAsync extends BaseSms
 	protected $voiceUrl;
 	protected $scheduleUrl;
 	protected $smartUrl;
+	protected $blackListUrl;
 
 	protected $queue;
 
@@ -37,6 +38,8 @@ class SmsSoapAsync extends BaseSms
 		$this->scheduleUrl = $this->getPath(self::PATH, 'Schedule');
 
 		$this->smartUrl = $this->getPath(self::PATH, 'Smartsms');
+
+		$this->blackListUrl = $this->getPath(self::PATH, 'blacklist');
 
 		$this->queue = array();
 	}
@@ -802,7 +805,7 @@ class SmsSoapAsync extends BaseSms
 		array_push($this->queue, $data);
 	}
 
-	public function SendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	public function sendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
 	{
 		$data = [
 			'username' => $this->username,
@@ -816,6 +819,51 @@ class SmsSoapAsync extends BaseSms
 
 		array_push($this->queue, $this->smartUrl);
 		array_push($this->queue, 'SendSmartSMS');
+		array_push($this->queue, $data);
+	}
+
+
+	public function addBlackList($number, $type)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'number' => $number,
+			'type' => $type
+		];
+
+		array_push($this->queue, $this->blackListUrl);
+		array_push($this->queue, 'AddBlackList');
+		array_push($this->queue, $data);
+	}
+
+
+	public function addMobile($listId, $type, $mobileNumbers, $addBySms)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'type' => $type,
+			'listId' => $listId,
+			'mobileNumbers' => $mobileNumbers,
+			'addBySms' => $addBySms
+		];
+
+		array_push($this->queue, $this->blackListUrl);
+		array_push($this->queue, 'AddMobile');
+		array_push($this->queue, $data);
+	}
+
+
+	public function getBlackLists()
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password
+		];
+
+		array_push($this->queue, $this->blackListUrl);
+		array_push($this->queue, 'GetBlackLists');
 		array_push($this->queue, $data);
 	}
 }
