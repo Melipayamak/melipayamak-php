@@ -212,6 +212,112 @@ class ContactsAsync
 		array_push($this->queue, $data);
 		
 	}
+
+
+	public function addContact2($groupIds, $firstname, $lastname, $gender, $corporation, $mobilenumber)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'groupIds' => $groupIds,
+			'firstname' => $firstname,
+			'lastname' => $lastname,
+			'gender' => $gender,
+			'corporation' => $corporation,
+			'mobilenumber' => $mobilenumber
+		];
+
+		array_push($this->queue, 'AddContact2');
+		array_push($this->queue, $data);
+	}
+
+	public function addContactEvents($contactId, $eventName, $eventType, $eventDate)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'contactId' => $contactId,
+			'eventName' => $eventName,
+			'eventType' => $eventType,
+			'eventDate' => $eventDate
+		];
+
+		array_push($this->queue, 'AddContactEvents');
+		array_push($this->queue, $data);
+	}
+
+	public function changeContact2($contactId, $mobilenumber, $firstname, $lastname, $nickname, $corporation, $phone,
+		$fax, $email, $gender, $province, $city, $address, $postalCode, $additionaltext, $descriptions, $contactStatus, $birthdate)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'contactId' => $contactId,
+			'mobilenumber' => $mobilenumber,
+			'firstname' => $firstname,
+			'lastname' => $lastname,
+			'nickname' => $nickname,
+			'corporation' => $corporation,
+			'phone' => $phone,
+			'fax' => $fax,
+			'email' => $email,
+			'gender' => $gender,
+			'province' => $province,
+			'city' => $city,
+			'address' => $address,
+			'postalCode' => $postalCode,
+			'additionaltext' => $additionaltext,
+			'descriptions' => $descriptions,
+			'contactStatus' => $contactStatus,
+			'birthdate' => $birthdate
+
+		];
+
+		array_push($this->queue, 'ChangeContact2');
+		array_push($this->queue, $data);
+	}
+
+
+	public function changeGroup($groupId, $groupName, $Descriptions, $showToChilds, $groupStatus)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'groupId' => $groupId,
+			'groupName' => $groupName,
+			'Descriptions' => $Descriptions,
+			'showToChilds' => $showToChilds,
+			'groupStatus' => $groupStatus
+		];
+
+		array_push($this->queue, 'ChangeGroup');
+		array_push($this->queue, $data);
+	}
+
+	public function removeContact2($contactId, $groupId)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'contactId' => $contactId,
+			'groupId' => $groupId
+		];
+
+		array_push($this->queue, 'RemoveContact2');
+		array_push($this->queue, $data);
+	}
+
+	public function removeGroup($groupId)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'groupId' => $groupId
+		];
+
+		array_push($this->queue, 'RemoveGroup');
+		array_push($this->queue, $data);
+	}
 	
 	
 }
