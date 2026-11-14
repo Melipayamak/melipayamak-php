@@ -609,4 +609,70 @@ class SmsSoapAsync extends BaseSms
 		array_push($this->queue, 'GetOutBoxCount');
 		array_push($this->queue, $data);
 	}
+
+
+	public function addNewUsance($to, $from, $text, $isflash, $scheduleStartDateTime, $countrepeat, $scheduleEndDateTime, $periodType)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'from' => $from,
+			'text' => $text,
+			'isflash' => $isflash,
+			'scheduleStartDateTime' => $scheduleStartDateTime,
+			'countrepeat' => $countrepeat,
+			'scheduleEndDateTime' => $scheduleEndDateTime,
+			'periodType' => $periodType
+		];
+
+		array_push($this->queue, $this->scheduleUrl);
+		array_push($this->queue, 'AddNewUsance');
+		array_push($this->queue, $data);
+	}
+
+
+	public function addScheduleSendByBaseNumber2($text, $to, $bodyId, $scheduleDate)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'bodyId' => $bodyId,
+			'scheduleDate' => $scheduleDate
+		];
+
+		array_push($this->queue, $this->scheduleUrl);
+		array_push($this->queue, 'AddScheduleSendByBaseNumber2');
+		array_push($this->queue, $data);
+	}
+
+
+	public function getScheduleDetails($scheduleId)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'scheduleId' => $scheduleId
+		];
+
+		array_push($this->queue, $this->scheduleUrl);
+		array_push($this->queue, 'GetScheduleDetails');
+		array_push($this->queue, $data);
+	}
+
+
+	public function RemoveScheduleList($scheduleIdList)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'scheduleIdList' => $scheduleIdList
+		];
+
+		array_push($this->queue, $this->scheduleUrl);
+		array_push($this->queue, 'RemoveScheduleList');
+		array_push($this->queue, $data);
+	}
 }

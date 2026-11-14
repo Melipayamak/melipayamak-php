@@ -473,4 +473,62 @@ class SmsSoap extends BaseSms
 			'password' => $this->password
 		])->GetOutBoxCountResponse;
 	}
+
+
+	public function addNewUsance($to, $from, $text, $isflash, $scheduleStartDateTime, $countrepeat, $scheduleEndDateTime, $periodType)
+	{
+		$client = new \SoapClient($this->scheduleUrl);
+
+		return $client->AddNewUsance([
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'from' => $from,
+			'text' => $text,
+			'isflash' => $isflash,
+			'scheduleStartDateTime' => $scheduleStartDateTime,
+			'countrepeat' => $countrepeat,
+			'scheduleEndDateTime' => $scheduleEndDateTime,
+			'periodType' => $periodType
+		])->AddNewUsanceResponse;
+	}
+
+
+	public function addScheduleSendByBaseNumber2($text, $to, $bodyId, $scheduleDate)
+	{
+		$client = new \SoapClient($this->scheduleUrl);
+
+		return $client->AddScheduleSendByBaseNumber2([
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'bodyId' => $bodyId,
+			'scheduleDate' => $scheduleDate
+		])->AddScheduleSendByBaseNumber2Response;
+	}
+
+
+	public function getScheduleDetails($scheduleId)
+	{
+		$client = new \SoapClient($this->scheduleUrl);
+
+		return $client->GetScheduleDetails([
+			'username' => $this->username,
+			'password' => $this->password,
+			'scheduleId' => $scheduleId
+		])->GetScheduleDetailsResponse;
+	}
+
+
+	public function RemoveScheduleList($scheduleIdList)
+	{
+		$client = new \SoapClient($this->scheduleUrl);
+
+		return $client->RemoveScheduleList([
+			'username' => $this->username,
+			'password' => $this->password,
+			'scheduleIdList' => $scheduleIdList
+		])->RemoveScheduleListResponse;
+	}
 }
