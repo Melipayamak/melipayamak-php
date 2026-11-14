@@ -34,7 +34,7 @@
 
 
 ```php
-composer require melipayamak/php:1.0.0
+composer require melipayamak/php:2.0.5
 ```
 
 
@@ -49,7 +49,7 @@ composer.json
 
 
 ```json
-"melipayamak/php": "1.0.0"
+"melipayamak/php": "2.0.5"
 ```
 
 
