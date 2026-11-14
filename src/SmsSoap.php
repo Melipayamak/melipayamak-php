@@ -462,4 +462,15 @@ class SmsSoap extends BaseSms
 			'udh' => $udh
 		])->SendSms2Response;
 	}
+
+
+	public function getOutBoxCount()
+	{
+		$client = new \SoapClient($this->receiveUrl);
+
+		return $client->GetOutBoxCount([
+			'username' => $this->username,
+			'password' => $this->password
+		])->GetOutBoxCountResponse;
+	}
 }

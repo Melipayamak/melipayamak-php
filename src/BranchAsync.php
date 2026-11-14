@@ -324,5 +324,30 @@ class BranchAsync
 		array_push($this->queue, $data);
 		
 	}
+
+
+	public function getMultipleSMS3Deliveries($ids)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $ids
+		];
+
+		array_push($this->queue, 'GetMultipleSMS3Deliveries');
+		array_push($this->queue, $data);
+	}
+
+
+	public function getSendBulk()
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+		];
+
+		array_push($this->queue, 'GetSendBulk');
+		array_push($this->queue, $data);
+	}
 	
 }

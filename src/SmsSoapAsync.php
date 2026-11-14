@@ -596,4 +596,17 @@ class SmsSoapAsync extends BaseSms
 		array_push($this->queue, 'SendSms2');
 		array_push($this->queue, $data);
 	}
+
+
+	public function getOutBoxCount()
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password
+		];
+
+		array_push($this->queue, $this->receiveUrl);
+		array_push($this->queue, 'GetOutBoxCount');
+		array_push($this->queue, $data);
+	}
 }

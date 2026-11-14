@@ -5,295 +5,228 @@ namespace Melipayamak;
 
 class Branch
 {
-	
+
 	protected $username;
-	
+
 	protected $password;
-	
+
 	protected $client;
-	
+
 	const PATH = 'http://api.payamak-panel.com/post/Actions.asmx?wsdl';
-	
-	public function __construct($username,$password)
+
+	public function __construct($username, $password)
 	{
-		
-		
-		if (is_null($username)||is_null($password)) {
-			
+
+
+		if (is_null($username) || is_null($password)) {
+
 			die('username/password is empty');
-			
+
 			exit;
-			
 		}
-		
+
 		ini_set("soap.wsdl_cache_enabled", "0");
-		
+
 		$this->username = $username;
-		
+
 		$this->password = $password;
-		
+
 		$this->client = new \SoapClient(self::PATH);
-		
 	}
-	
+
 	public function get($owner)
 	{
-		
-		$result = $this->client->GetBranchs([   
-		'username' => $this->username,
-		'password' => $this->password,
-		'owner'=>$owner
-		]
+
+		return $this->client->GetBranchs(
+			[
+				'username' => $this->username,
+				'password' => $this->password,
+				'owner' => $owner
+			]
 		)->GetBranchsResult;
-		
-		return $result;
-		
 	}
-	
+
 	public function remove($branchId)
 	{
-		
-		$result = $this->client->RemoveBranch([   
-		'username' => $this->username,
-		'password' => $this->password,
-		'branchId'=>$branchId
-		]
-		)->RemoveBranchResult;
-		
-		return $result;
-		
+
+		return $this->client->RemoveBranch([
+			'username' => $this->username,
+			'password' => $this->password,
+			'branchId' => $branchId
+		])->RemoveBranchResult;
 	}
-	
-	public function add($branchName,$owner)
+
+	public function add($branchName, $owner)
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'branchName' => $branchName,
-		'owner'=>$owner
-		];
-		
-		$result = $this->client->AddBranch($data
-		)->AddBranchResult;
-		
-		return $result;
-		
+		return $this->client->AddBranch([
+			'username' => $this->username,
+			'password' => $this->password,
+			'branchName' => $branchName,
+			'owner' => $owner
+		])->AddBranchResult;
 	}
-	
-	public function addNumber($mobileNumbers,$branchId)
+
+	public function addNumber($mobileNumbers, $branchId)
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'branchId'=> $branchId,
-		'mobileNumbers'=>$mobileNumbers
-		
-		];
-		
-		$result = $this->client->AddNumber($data
-		)->AddNumberResult;
-		
-		return $result;
-		
+		return $this->client->AddNumber([
+			'username' => $this->username,
+			'password' => $this->password,
+			'branchId' => $branchId,
+			'mobileNumbers' => $mobileNumbers
+		])->AddNumberResult;
 	}
-	
-	public function sendBulk($from,$title,$message,$branch,$DateToSend,$requestCount,$bulkType,$rowFrom,$rangeFrom,$rangeTo)
+
+	public function sendBulk($from, $title, $message, $branch, $DateToSend, $requestCount, $bulkType, $rowFrom, $rangeFrom, $rangeTo)
 	{
-		
 		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'from'=> $from,
-		'title' => $title,
-		'message' => $message,
-		'branch'=> $branch,
-		'DateToSend'=>$DateToSend,
-		'requestCount'=>$requestCount,
-		'bulkType'=> $bulkType,
-		'rowFrom'=> $rowFrom,
-		'rangeFrom'=>$rangeFrom,
-		'rangeTo'=>$rangeTo,
-		
+			'username' => $this->username,
+			'password' => $this->password,
+			'from' => $from,
+			'title' => $title,
+			'message' => $message,
+			'branch' => $branch,
+			'DateToSend' => $DateToSend,
+			'requestCount' => $requestCount,
+			'bulkType' => $bulkType,
+			'rowFrom' => $rowFrom,
+			'rangeFrom' => $rangeFrom,
+			'rangeTo' => $rangeTo,
+
 		];
-		
-		$result = $this->client->AddBulk($data
-		)->AddBulkResult;
-		
-		return $result;
-		
+
+		return $this->client->AddBulk($data)->AddBulkResult;
 	}
-	
-	public function sendBulk2($from,$title,$message,$branch,$DateToSend,$requestCount,$bulkType,$rowFrom,$rangeFrom,$rangeTo)
+
+	public function sendBulk2($from, $title, $message, $branch, $DateToSend, $requestCount, $bulkType, $rowFrom, $rangeFrom, $rangeTo)
 	{
-		
 		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'from'=> $from,
-		'title' => $title,
-		'message' => $message,
-		'branch'=> $branch,
-		'DateToSend'=>$DateToSend,
-		'requestCount'=>$requestCount,
-		'bulkType'=> $bulkType,
-		'rowFrom'=> $rowFrom,
-		'rangeFrom'=>$rangeFrom,
-		'rangeTo'=>$rangeTo,
-		
+			'username' => $this->username,
+			'password' => $this->password,
+			'from' => $from,
+			'title' => $title,
+			'message' => $message,
+			'branch' => $branch,
+			'DateToSend' => $DateToSend,
+			'requestCount' => $requestCount,
+			'bulkType' => $bulkType,
+			'rowFrom' => $rowFrom,
+			'rangeFrom' => $rangeFrom,
+			'rangeTo' => $rangeTo,
+
 		];
-		
-		$result = $this->client->AddBulk2($data
-		)->AddBulk2Result;
-		
-		return $result;
-		
+
+		return $this->client->AddBulk2($data)->AddBulk2Result;
 	}
-	
-	public function getBulkCount($branch,$rangeFrom,$rangeTo)
+
+	public function getBulkCount($branch, $rangeFrom, $rangeTo)
 	{
-		
 		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'branch'=> $branch,
-		'rangeFrom'=>$rangeFrom,
-		'rangeTo'=>$rangeTo,
-		
+			'username' => $this->username,
+			'password' => $this->password,
+			'branch' => $branch,
+			'rangeFrom' => $rangeFrom,
+			'rangeTo' => $rangeTo,
+
 		];
-		
-		$result = $this->client->GetBulkCount($data
-		)->GetBulkCountResult;
-		
-		return $result;
-		
+
+		return $this->client->GetBulkCount($data)->GetBulkCountResult;
 	}
-	
-	public function getBulkReceptions($bulkId,$fromRows)
+
+	public function getBulkReceptions($bulkId, $fromRows)
 	{
-		
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'bulkId'=> $bulkId,
-		'fromRows'=>$fromRows,
-		
-		];
-		
-		$result = $this->client->GetBulkReceptions($data
-		)->GetBulkReceptionsResult;
-		
-		return $result;
-		
+		return $this->client->GetBulkReceptions([
+			'username' => $this->username,
+			'password' => $this->password,
+			'bulkId' => $bulkId,
+			'fromRows' => $fromRows,
+		])->GetBulkReceptionsResult;
 	}
-	
+
 	public function getBulkStatus($bulkId)
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'bulkId'=> $bulkId,
-		];
-		
-		$result = $this->client->GetBulkStatus($data
-		)->GetBulkStatusResult;
-		
-		return $result;
-		
+		return $this->client->GetBulkStatus([
+			'username' => $this->username,
+			'password' => $this->password,
+			'bulkId' => $bulkId,
+		])->GetBulkStatusResult;
 	}
-	
+
 	public function getTodaySent()
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		];
-		
-		$result = $this->client->GetTodaySent($data
-		)->GetTodaySentResult;
-		
-		return $result;
-		
+		return $this->client->GetTodaySent([
+			'username' => $this->username,
+			'password' => $this->password,
+		])->GetTodaySentResult;
 	}
-	
+
 	public function getTotalSent()
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		];
-		
-		$result = $this->client->GetTotalSent($data
-		)->GetTotalSentResult;
-		
-		return $result;
-		
+		return $this->client->GetTotalSent([
+			'username' => $this->username,
+			'password' => $this->password,
+		])->GetTotalSentResult;
 	}
-	
+
 	public function removeBulk($id)
 	{
-		
-		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'bulkId'=> $id
-		];
-		
-		$result = $this->client->RemoveBulk($data
-		)->GetTotalSentResult;
-		
-		return $result;
-		
+		return $this->client->RemoveBulk([
+			'username' => $this->username,
+			'password' => $this->password,
+			'bulkId' => $id
+		])->GetTotalSentResult;
 	}
-	
-	public function sendMultipleSms($to,$from,$text,$isflash,$udh)
+
+	public function sendMultipleSms($to, $from, $text, $isflash, $udh)
 	{
-		
+
 		$data = [
-		'username' => $this->username,
-		'password' => $this->password,
-		'to'=> $to,
-		'from'=> $from,
-		'text' => $text,
-		'isflash' => $isflash,
-		'udh'=> $udh
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'from' => $from,
+			'text' => $text,
+			'isflash' => $isflash,
+			'udh' => $udh
 		];
-		
+
 		$result;
-		
-		if(is_array($from)){
-			
+
+		if (is_array($from)) {
 			$result = $this->client->SendMultipleSMS2($data);
-			
-		}
-		else{
-			
+		} else {
 			$result = $this->client->SendMultipleSMS($data);
-			
 		}
-		
+
 		return $result;
-		
 	}
-	
+
 	public function updateBulkDelivery($bulkId)
 	{
-		
-		$data=[
-		'bulkId'=> $bulkId,
-		'username' => $this->username,
-		'password' => $this->password,
+		$data = [
+			'bulkId' => $bulkId,
+			'username' => $this->username,
+			'password' => $this->password,
 		];
-		
-		$result = $this->client->UpdateBulkDelivery($data)->UpdateBulkDeliveryResult;
-		
-		return $result;
-		
+
+		return $this->client->UpdateBulkDelivery($data)->UpdateBulkDeliveryResult;
 	}
-	
+
+
+	public function getMultipleSMS3Deliveries($ids)
+	{
+		return $this->client->GetMultipleSMS3Deliveries([
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $ids
+		])->GetMultipleSMS3DeliveriesResponse;
+	}
+
+
+	public function getSendBulk()
+	{
+		return $this->client->GetSendBulk([
+			'username' => $this->username,
+			'password' => $this->password,
+		])->GetSendBulkResponse;
+	}
 }
