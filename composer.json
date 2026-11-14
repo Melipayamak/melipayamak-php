@@ -15,10 +15,10 @@
             "name": "Ara Code It",
             "email": "ahnara92@gmail.com"
         },
-	{
-	    "name": "Amirhossein Mehrvarzi",
-	    "email": "info@trigger.ir"
-	}
+        {
+            "name": "Amirhossein Mehrvarzi",
+            "email": "info@trigger.ir"
+        }
     ],
     "require": {
         "php": ">=5.4.0"
