@@ -17,6 +17,7 @@ class SmsSoapAsync extends BaseSms
 	protected $receiveUrl;
 	protected $voiceUrl;
 	protected $scheduleUrl;
+	protected $smartUrl;
 
 	protected $queue;
 
@@ -35,6 +36,7 @@ class SmsSoapAsync extends BaseSms
 
 		$this->scheduleUrl = $this->getPath(self::PATH, 'Schedule');
 
+		$this->smartUrl = $this->getPath(self::PATH, 'Smartsms');
 
 		$this->queue = array();
 	}
@@ -753,6 +755,67 @@ class SmsSoapAsync extends BaseSms
 
 		array_push($this->queue, $this->voiceUrl);
 		array_push($this->queue, 'SendVoiceOtp');
+		array_push($this->queue, $data);
+	}
+
+
+	public function getSmartSMSDeliveries($Id)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $Id
+		];
+
+		array_push($this->queue, $this->smartUrl);
+		array_push($this->queue, 'GetSmartSMSDeliveries');
+		array_push($this->queue, $data);
+	}
+
+	public function getSmartSMSDetails($id)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $id
+		];
+
+		array_push($this->queue, $this->smartUrl);
+		array_push($this->queue, 'GetSmartSMSDetails');
+		array_push($this->queue, $data);
+	}
+
+	public function sendMultipleSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'from' => $from,
+			'fromSupportOne' => $fromSupportOne,
+			'fromSupportTwo' => $fromSupportTwo
+		];
+
+		array_push($this->queue, $this->smartUrl);
+		array_push($this->queue, 'SendMultipleSmartSMS');
+		array_push($this->queue, $data);
+	}
+
+	public function SendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'from' => $from,
+			'fromSupportOne' => $fromSupportOne,
+			'fromSupportTwo' => $fromSupportTwo
+		];
+
+		array_push($this->queue, $this->smartUrl);
+		array_push($this->queue, 'SendSmartSMS');
 		array_push($this->queue, $data);
 	}
 }

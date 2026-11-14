@@ -15,6 +15,7 @@ class SmsSoap extends BaseSms
 	protected $receiveUrl;
 	protected $voiceUrl;
 	protected $scheduleUrl;
+	protected $smartUrl;
 
 
 	public function __construct($username, $password)
@@ -31,6 +32,8 @@ class SmsSoap extends BaseSms
 		$this->voiceUrl = $this->getPath(self::PATH, 'Voice');
 
 		$this->scheduleUrl = $this->getPath(self::PATH, 'Schedule');
+
+		$this->smartUrl = $this->getPath(self::PATH, 'Smartsms');
 	}
 
 
@@ -611,5 +614,58 @@ class SmsSoap extends BaseSms
 			'code' => $code,
 			'to' => $to
 		])->SendVoiceOtpResult;
+	}
+
+
+	public function getSmartSMSDeliveries($Id)
+	{
+		$client = new \SoapClient($this->smartUrl);
+
+		return $client->GetSmartSMSDeliveries([
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $Id
+		])->GetSmartSMSDeliveriesResult;
+	}
+
+	public function getSmartSMSDetails($id)
+	{
+		$client = new \SoapClient($this->smartUrl);
+
+		return $client->GetSmartSMSDetails([
+			'username' => $this->username,
+			'password' => $this->password,
+			'Id' => $id
+		])->GetSmartSMSDetailsResult;
+	}
+
+	public function sendMultipleSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	{
+		$client = new \SoapClient($this->smartUrl);
+
+		return $client->SendMultipleSmartSMS([
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'from' => $from,
+			'fromSupportOne' => $fromSupportOne,
+			'fromSupportTwo' => $fromSupportTwo
+		])->SendMultipleSmartSMSResult;
+	}
+
+	public function SendSmartSMS($to, $text, $from, $fromSupportOne, $fromSupportTwo)
+	{
+		$client = new \SoapClient($this->smartUrl);
+
+		return $client->SendSmartSMS([
+			'username' => $this->username,
+			'password' => $this->password,
+			'to' => $to,
+			'text' => $text,
+			'from' => $from,
+			'fromSupportOne' => $fromSupportOne,
+			'fromSupportTwo' => $fromSupportTwo
+		])->SendSmartSMSResult;
 	}
 }
