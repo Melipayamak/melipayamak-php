@@ -218,7 +218,7 @@ class Branch
 			'username' => $this->username,
 			'password' => $this->password,
 			'Id' => $ids
-		])->GetMultipleSMS3DeliveriesResponse;
+		])->GetMultipleSMS3DeliveriesResult;
 	}
 
 
@@ -227,6 +227,6 @@ class Branch
 		return $this->client->GetSendBulk([
 			'username' => $this->username,
 			'password' => $this->password,
-		])->GetSendBulkResponse;
+		])->GetSendBulkResult;
 	}
 }

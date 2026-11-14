@@ -121,7 +121,7 @@ class Contacts
 			'gender' => $gender,
 			'corporation' => $corporation,
 			'mobilenumber' => $mobilenumber
-		])->AddContact2Response;
+		])->AddContact2Result;
 	}
 
 	public function addContactEvents($contactId, $eventName, $eventType, $eventDate)
@@ -133,7 +133,7 @@ class Contacts
 			'eventName' => $eventName,
 			'eventType' => $eventType,
 			'eventDate' => $eventDate
-		])->AddContactEventsResponse;
+		])->AddContactEventsResult;
 	}
 
 	public function changeContact2($contactId, $mobilenumber, $firstname, $lastname, $nickname, $corporation, $phone,
@@ -161,7 +161,7 @@ class Contacts
 			'contactStatus' => $contactStatus,
 			'birthdate' => $birthdate
 
-		])->ChangeContact2Response;
+		])->ChangeContact2Result;
 	}
 
 
@@ -175,7 +175,7 @@ class Contacts
 			'Descriptions' => $Descriptions,
 			'showToChilds' => $showToChilds,
 			'groupStatus' => $groupStatus
-		])->ChangeGroupResponse;
+		])->ChangeGroupResult;
 	}
 
 	public function removeContact2($contactId, $groupId)
@@ -185,7 +185,7 @@ class Contacts
 			'password' => $this->password,
 			'contactId' => $contactId,
 			'groupId' => $groupId
-		])->RemoveContact2Response;
+		])->RemoveContact2Result;
 	}
 
 	public function removeGroup($groupId)
@@ -194,7 +194,7 @@ class Contacts
 			'username' => $this->username,
 			'password' => $this->password,
 			'groupId' => $groupId
-		])->RemoveGroupResponse;
+		])->RemoveGroupResult;
 	}
 
 }

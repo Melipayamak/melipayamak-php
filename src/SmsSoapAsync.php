@@ -675,4 +675,84 @@ class SmsSoapAsync extends BaseSms
 		array_push($this->queue, 'RemoveScheduleList');
 		array_push($this->queue, $data);
 	}
+
+
+	public function getSendSpeechTextStatuses($recIds)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'recIds' => $recIds
+		];
+
+		array_push($this->queue, $this->voiceUrl);
+		array_push($this->queue, 'GetSendSpeechTextStatuses');
+		array_push($this->queue, $data);
+	}
+
+
+	public function sendBulkSpeechText($title, $body, $receivers, $DateToSend, $RepeatCount)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'title' => $title,
+			'body' => $body,
+			'receivers' => $receivers,
+			'DateToSend' => $DateToSend,
+			'RepeatCount' => $RepeatCount
+		];
+
+		array_push($this->queue, $this->voiceUrl);
+		array_push($this->queue, 'SendBulkSpeechText');
+		array_push($this->queue, $data);
+	}
+
+
+	public function sendBulkVoiceSMS($title, $voiceFileId, $receivers, $DateToSend, $repeatCount)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'title' => $title,
+			'voiceFileId' => $voiceFileId,
+			'receivers' => $receivers,
+			'DateToSend' => $DateToSend,
+			'repeatCount' => $repeatCount
+		];
+
+		array_push($this->queue, $this->voiceUrl);
+		array_push($this->queue, 'SendBulkVoiceSMS');
+		array_push($this->queue, $data);
+	}
+
+
+	public function sendSpeechText($text, $to)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'text' => $text,
+			'to' => $to
+		];
+
+		array_push($this->queue, $this->voiceUrl);
+		array_push($this->queue, 'SendSpeechText');
+		array_push($this->queue, $data);
+	}
+
+
+	public function sendVoiceOtp($to, $code)
+	{
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password,
+			'code' => $code,
+			'to' => $to
+		];
+
+		array_push($this->queue, $this->voiceUrl);
+		array_push($this->queue, 'SendVoiceOtp');
+		array_push($this->queue, $data);
+	}
 }

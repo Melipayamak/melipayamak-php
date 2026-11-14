@@ -416,7 +416,7 @@ class SmsSoap extends BaseSms
 			'password' => $this->password,
 			'text' => $text,
 			'to' => $to
-		])->SendByBaseNumber3Response;
+		])->SendByBaseNumber3Result;
 	}
 
 
@@ -431,7 +431,7 @@ class SmsSoap extends BaseSms
 			'to' => $to,
 			'bodyId' => $bodyId,
 			'smsPrice' => $smsPrice
-		])->SendByBaseNumber4Response;
+		])->SendByBaseNumber4Result;
 	}
 
 
@@ -445,7 +445,7 @@ class SmsSoap extends BaseSms
 			'to' => $to,
 			'from' => $from,
 			'code' => $code
-		])->SendOtp2Response;
+		])->SendOtp2Result;
 	}
 
 	public function sendSms2($to, $from, $text, $isflash, $udh)
@@ -460,7 +460,7 @@ class SmsSoap extends BaseSms
 			'text' => $text,
 			'isflash' => $isflash,
 			'udh' => $udh
-		])->SendSms2Response;
+		])->SendSms2Result;
 	}
 
 
@@ -471,7 +471,7 @@ class SmsSoap extends BaseSms
 		return $client->GetOutBoxCount([
 			'username' => $this->username,
 			'password' => $this->password
-		])->GetOutBoxCountResponse;
+		])->GetOutBoxCountResult;
 	}
 
 
@@ -490,7 +490,7 @@ class SmsSoap extends BaseSms
 			'countrepeat' => $countrepeat,
 			'scheduleEndDateTime' => $scheduleEndDateTime,
 			'periodType' => $periodType
-		])->AddNewUsanceResponse;
+		])->AddNewUsanceResult;
 	}
 
 
@@ -505,7 +505,7 @@ class SmsSoap extends BaseSms
 			'text' => $text,
 			'bodyId' => $bodyId,
 			'scheduleDate' => $scheduleDate
-		])->AddScheduleSendByBaseNumber2Response;
+		])->AddScheduleSendByBaseNumber2Result;
 	}
 
 
@@ -517,11 +517,11 @@ class SmsSoap extends BaseSms
 			'username' => $this->username,
 			'password' => $this->password,
 			'scheduleId' => $scheduleId
-		])->GetScheduleDetailsResponse;
+		])->GetScheduleDetailsResult;
 	}
 
 
-	public function RemoveScheduleList($scheduleIdList)
+	public function removeScheduleList($scheduleIdList)
 	{
 		$client = new \SoapClient($this->scheduleUrl);
 
@@ -529,6 +529,87 @@ class SmsSoap extends BaseSms
 			'username' => $this->username,
 			'password' => $this->password,
 			'scheduleIdList' => $scheduleIdList
-		])->RemoveScheduleListResponse;
+		])->RemoveScheduleListResult;
+	}
+
+
+	public function getSendSpeechTextStatus($recId)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->GetSendSpeechTextStatus([
+			'username' => $this->username,
+			'password' => $this->password,
+			'recId' => $recId
+		])->GetSendSpeechTextStatusResult;
+	}
+
+	public function getSendSpeechTextStatuses($recIds)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->GetSendSpeechTextStatuses([
+			'username' => $this->username,
+			'password' => $this->password,
+			'recIds' => $recIds
+		])->GetSendSpeechTextStatusesResult;
+	}
+
+
+	public function sendBulkSpeechText($title, $body, $receivers, $DateToSend, $RepeatCount)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->SendBulkSpeechText([
+			'username' => $this->username,
+			'password' => $this->password,
+			'title' => $title,
+			'body' => $body,
+			'receivers' => $receivers,
+			'DateToSend' => $DateToSend,
+			'RepeatCount' => $RepeatCount
+		])->SendBulkSpeechTextResult;
+	}
+
+
+	public function sendBulkVoiceSMS($title, $voiceFileId, $receivers, $DateToSend, $repeatCount)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->SendBulkVoiceSMS([
+			'username' => $this->username,
+			'password' => $this->password,
+			'title' => $title,
+			'voiceFileId' => $voiceFileId,
+			'receivers' => $receivers,
+			'DateToSend' => $DateToSend,
+			'repeatCount' => $repeatCount
+		])->SendBulkVoiceSMSResult;
+	}
+
+
+	public function sendSpeechText($text, $to)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->SendSpeechText([
+			'username' => $this->username,
+			'password' => $this->password,
+			'text' => $text,
+			'to' => $to
+		])->SendSpeechTextResult;
+	}
+
+
+	public function sendVoiceOtp($to, $code)
+	{
+		$client = new \SoapClient($this->voiceUrl);
+
+		return $client->SendVoiceOtp([
+			'username' => $this->username,
+			'password' => $this->password,
+			'code' => $code,
+			'to' => $to
+		])->SendVoiceOtpResult;
 	}
 }
