@@ -44,16 +44,12 @@ class SmsSoap extends BaseSms
 	{
 		$client = new \SoapClient($this->sendUrl);
 
-		$data =
-			[
-				'username' => $this->username,
-				'password' => $this->password
-			];
+		$data = [
+			'username' => $this->username,
+			'password' => $this->password
+		];
 
-
-		$result = $client->GetCredit($data)->GetCreditResult;
-
-		return $result;
+		return $client->GetCredit($data)->GetCreditResult;
 	}
 
 	public function sendByBaseNumber($text, $to, $bodyId)
