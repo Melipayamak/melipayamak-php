@@ -176,17 +176,17 @@ $smsSoap->send($to,$from,$text,$isFlash);
 #### درج لیست ویژه سیاه
 
 ```php
-$smsSoap->addblacklist($title);
+$api->blackListAdd()->addblacklist($title);
 ```
 
 #### درج پترن یا الگو
 ```php
-$smsSoap->sharedServiceBodyAdd($title,$body,$blackListId);
+$api->sharedService()->sharedServiceBodyAdd($title,$body,$blackListId);
 ```
 
 #### مشاهده پترن‌های درج شده
 ```php
-$smsSoap->getSharedServiceBody();
+$api->sharedService()->getSharedServiceBody();
 ```
 
 #### ارسال از طریق الگو (خط خدماتی اشتراکی)
